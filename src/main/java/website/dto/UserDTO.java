@@ -1,66 +1,59 @@
 package website.dto;
 
 import java.io.Serializable;
+import website.enums.UserStatus;
+
+import lombok.Data;
+import lombok.experimental.Accessors;
 
 /**
  * 用户数据传输对象
  */
+@Data
+@Accessors(chain = true)
 public class UserDTO implements Serializable {
     
     private static final long serialVersionUID = 1L;
 
+    /**
+     * 用户ID
+     */
     private Long id;
+    
+    /**
+     * 用户名
+     */
     private String username;
+    
+    /**
+     * 真实姓名
+     */
     private String realName;
+    
+    /**
+     * 手机号
+     */
     private String phone;
+    
+    /**
+     * 邮箱
+     */
     private String email;
-    private Integer status;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getRealName() {
-        return realName;
-    }
-
-    public void setRealName(String realName) {
-        this.realName = realName;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public Integer getStatus() {
-        return status;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
+    
+    /**
+     * 头像地址
+     */
+    private String avatar;
+    
+    /**
+     * 用户状态
+     */
+    private UserStatus status;
+    
+    /**
+     * 获取状态显示文本
+     */
+    public String getStatusLabel() {
+        return status != null ? status.getLabel() : null;
     }
 } 

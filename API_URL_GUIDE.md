@@ -1,4 +1,4 @@
-# 企业官网API访问指南
+# API访问指南
 
 ## API基础路径
 
@@ -19,52 +19,62 @@
 | `/users/{id}` | DELETE | 删除用户 |
 | `/users/checkUsername` | GET | 检查用户名 |
 
-### 新闻管理接口
+### 角色管理接口
 
 | 接口路径 | 方法 | 说明 |
 |------------|------|------|
-| `/news` | GET | 获取新闻列表 |
-| `/news/{id}` | GET | 获取新闻详情 |
-| `/news` | POST | 创建新闻 |
-| `/news/{id}` | PUT | 更新新闻 |
-| `/news/{id}` | DELETE | 删除新闻 |
+| `/roles` | GET | 获取角色列表 |
+| `/roles/{id}` | GET | 获取角色详情 |
+| `/roles` | POST | 创建角色 |
+| `/roles/{id}` | PUT | 更新角色 |
+| `/roles/{id}` | DELETE | 删除角色 |
 
-### 产品管理接口
-
-| 接口路径 | 方法 | 说明 |
-|------------|------|------|
-| `/products` | GET | 获取产品列表 |
-| `/products/{id}` | GET | 获取产品详情 |
-| `/products` | POST | 创建产品 |
-| `/products/{id}` | PUT | 更新产品 |
-| `/products/{id}` | DELETE | 删除产品 |
-
-### 产品分类接口
+### 网站管理接口
 
 | 接口路径 | 方法 | 说明 |
 |------------|------|------|
-| `/product-categories` | GET | 获取产品分类列表 |
-| `/product-categories/{id}` | GET | 获取产品分类详情 |
-| `/product-categories` | POST | 创建产品分类 |
-| `/product-categories/{id}` | PUT | 更新产品分类 |
-| `/product-categories/{id}` | DELETE | 删除产品分类 |
+| `/websites` | GET | 获取网站列表 |
+| `/websites/{id}` | GET | 获取网站详情 |
+| `/websites` | POST | 创建网站 |
+| `/websites/{id}` | PUT | 更新网站 |
+| `/websites/{id}` | DELETE | 删除网站 |
 
-### 联系我们接口
-
-| 接口路径 | 方法 | 说明 |
-|------------|------|------|
-| `/contacts` | GET | 获取联系信息列表 |
-| `/contacts/{id}` | GET | 获取联系信息详情 |
-| `/contacts` | POST | 提交联系信息 |
-| `/contacts/{id}` | PUT | 更新联系信息状态 |
-| `/contacts/{id}` | DELETE | 删除联系信息 |
-
-### 公司信息接口
+### 模板管理接口
 
 | 接口路径 | 方法 | 说明 |
 |------------|------|------|
-| `/company-info` | GET | 获取公司信息 |
-| `/company-info` | PUT | 更新公司信息 |
+| `/templates` | GET | 获取模板列表 |
+| `/templates/{id}` | GET | 获取模板详情 |
+| `/templates` | POST | 创建模板 |
+| `/templates/{id}` | PUT | 更新模板 |
+| `/templates/{id}` | DELETE | 删除模板 |
+
+### 网站内容管理接口
+
+| 接口路径 | 方法 | 说明 |
+|------------|------|------|
+| `/websites/{websiteId}/contents` | GET | 获取网站内容列表 |
+| `/websites/{websiteId}/contents/{id}` | GET | 获取网站内容详情 |
+| `/websites/{websiteId}/contents` | POST | 创建网站内容 |
+| `/websites/{websiteId}/contents/{id}` | PUT | 更新网站内容 |
+| `/websites/{websiteId}/contents/{id}` | DELETE | 删除网站内容 |
+
+### 网站菜单接口
+
+| 接口路径 | 方法 | 说明 |
+|------------|------|------|
+| `/websites/{websiteId}/menus` | GET | 获取网站菜单列表 |
+| `/websites/{websiteId}/menus/{id}` | GET | 获取网站菜单详情 |
+| `/websites/{websiteId}/menus` | POST | 创建网站菜单 |
+| `/websites/{websiteId}/menus/{id}` | PUT | 更新网站菜单 |
+| `/websites/{websiteId}/menus/{id}` | DELETE | 删除网站菜单 |
+
+### 网站配置接口
+
+| 接口路径 | 方法 | 说明 |
+|------------|------|------|
+| `/websites/{websiteId}/config` | GET | 获取网站配置 |
+| `/websites/{websiteId}/config` | PUT | 更新网站配置 |
 
 ## API测试工具配置
 
@@ -77,8 +87,8 @@
 
 2. 接口路径使用相对路径:
    - `/users`
-   - `/news`
-   - `/products`
+   - `/roles`
+   - `/websites`
    等
 
 ## Swagger文档访问
@@ -90,24 +100,22 @@ API文档可通过以下地址访问:
 http://localhost:8989/api/v1/swagger-ui.html
 ```
 
-**备用地址**:
-```
-http://localhost:8989/api/v1/swagger-ui/index.html
-```
-
 **API文档JSON地址**:
 ```
 http://localhost:8989/api/v1/v3/api-docs
 ```
 
-**访问提示**:
-- 如果遇到404错误，请先确认应用是否正常启动
-- 检查控制台日志中是否有SpringDoc相关错误
-- 可能需要清除浏览器缓存再次尝试访问
+## 认证与授权
 
-## 前端项目配置
+所有API接口（除了登录、注册接口外）都需要在请求头中添加token:
 
-对于前端项目(`@company/website`和`@company/admin`)，请配置API基础路径为:
+```
+Authorization: Bearer {token}
+```
+
+## 前端配置
+
+对于前端项目，请配置API基础路径为:
 
 ```javascript
 // 配置示例

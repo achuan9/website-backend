@@ -1,5 +1,7 @@
 package website.service;
 
+import com.baomidou.mybatisplus.extension.service.IService;
+
 import website.dto.UserDTO;
 import website.dto.UserRegisterParam;
 import website.entity.User;
@@ -9,7 +11,7 @@ import java.util.List;
 /**
  * 用户服务接口
  */
-public interface UserService {
+public interface UserService extends IService<User> {
     
     /**
      * 根据ID获取用户信息
